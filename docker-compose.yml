@@ -12,7 +12,7 @@ services:
     ports:
       - "389:389"
   ldap-api:
-    build: ..
+    build: .
     container_name: ldap-api
     ports:
       - "8080:8080"
