@@ -20,30 +20,30 @@ public class UserLDAPController {
         this.userLDAPService = userLDAPService;
     }
 
-    @GetMapping("/Users")
-    public ResponseEntity<List<UserLDAPModel>> retrieveAll() {
+    @GetMapping("/users")
+    public ResponseEntity<List<UserLDAPModel>> findAll() {
         return new ResponseEntity<>(userLDAPService.ldapUserFindAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/Users/{uid}")
-    public ResponseEntity<UserLDAPModel> retrieveOne(@PathVariable(name = "uid") String uid) {
+    @GetMapping("/users/{uid}")
+    public ResponseEntity<UserLDAPModel> findOne(@PathVariable(name = "uid") String uid) {
         return new ResponseEntity<>(userLDAPService.ldapUserFindOne(uid), HttpStatus.OK);
     }
 
-    @PostMapping("/Users")
-    public ResponseEntity<String> bindLdapPerson(@RequestBody UserLDAPModel user) {
-        String result = userLDAPService.create(user);
+    @PostMapping("/users")
+    public ResponseEntity<UserLDAPModel> createUser(@RequestBody UserLDAPModel user) {
+        UserLDAPModel result = userLDAPService.create(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/Users")
-    public ResponseEntity<String> rebindLdapPerson(@RequestBody UserLDAPModel user) {
-        String result = userLDAPService.update(user);
+    @PutMapping("/users")
+    public ResponseEntity<UserLDAPModel> UpdateUser(@RequestBody UserLDAPModel user) {
+        UserLDAPModel result = userLDAPService.update(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/Users/{uid}")
-    public ResponseEntity<String> unbindLdapPerson(@PathVariable(name = "uid") String uid) {
+    @DeleteMapping("/users/{uid}")
+    public ResponseEntity<String> deleteUser(@PathVariable(name = "uid") String uid) {
         String result = userLDAPService.remove(uid);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

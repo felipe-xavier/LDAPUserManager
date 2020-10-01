@@ -48,19 +48,19 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
     }
 
     @Override
-    public String create(UserLDAPModel user) {
+    public UserLDAPModel create(UserLDAPModel user) {
         Name dn = buildDn(user.getUid());
         Attributes attrs = buildAttributes(user);
         ldapTemplate.bind(dn, null, attrs);
-        return user.getUid() + " created successfully";
+        return user;
     }
 
     @Override
-    public String update(UserLDAPModel user) {
+    public UserLDAPModel update(UserLDAPModel user) {
         Name dn = buildDn(user.getUid());
         Attributes attrs = buildAttributes(user);
         ldapTemplate.rebind(dn, null, attrs);
-        return user.getUid() + " updated successfully";
+        return user;
     }
 
     @Override

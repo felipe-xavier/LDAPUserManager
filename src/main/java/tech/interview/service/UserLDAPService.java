@@ -25,11 +25,11 @@ public class UserLDAPService {
         return userLDAPRepositoryImpl.findOne(uid);
     }
 
-    public String create(UserLDAPModel user) {
+    public UserLDAPModel create(UserLDAPModel user) {
         return userLDAPRepositoryImpl.create(user);
     }
 
-    public String update(UserLDAPModel user) {
+    public UserLDAPModel update(UserLDAPModel user) {
         return userLDAPRepositoryImpl.update(user);
     }
 

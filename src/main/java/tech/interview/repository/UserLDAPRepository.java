@@ -10,7 +10,7 @@ public interface UserLDAPRepository {
 
     List<UserLDAPModel> findAll();
     UserLDAPModel findOne(String uid);
-    String create(UserLDAPModel user);
-    String update(UserLDAPModel user);
+    UserLDAPModel create(UserLDAPModel user);
+    UserLDAPModel update(UserLDAPModel user);
     String remove(String uid);
 }
