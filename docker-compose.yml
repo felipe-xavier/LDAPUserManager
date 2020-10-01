@@ -1,14 +1,14 @@
 version: '3.7'
 services:
   openldap:
-    image: osixia/openldap:1.4.0
+    build:
+      dockerfile: Dockerfile-openldap
+      context: .
     container_name: openldap
     environment:
       LDAP_ORGANISATION: "My Company"
       LDAP_DOMAIN: "techinterview.com"
       LDAP_ADMIN_PASSWORD: "123456"
-    tty: true
-    stdin_open: true
     ports:
       - "389:389"
   ldap-api:
