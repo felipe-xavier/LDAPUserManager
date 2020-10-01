@@ -13,8 +13,7 @@ Once succeeded, you are good to go: <http://localhost:8080/users>
 
 ## API Endpoints
 
-### 
-* Try to add a User through a POST request:
+#### Try to add a User through a POST request:
 ```
 POST http://localhost:8080/users
 ```
@@ -27,7 +26,7 @@ Payload:
 }
 ```
 
-* Update your User sending a PUT request:
+#### Update your User sending a PUT request:
 
 ```
 PUT http://localhost:8080/users
@@ -43,12 +42,12 @@ Payload:
 }
 ```
 
-* You can get a User through a GET request:
+#### You can get a User through a GET request:
 ```
-POST http://localhost:8080/users/{uid}
+GET http://localhost:8080/users/{uid}
 ```
 
-* Remove a User requesting DELETE
+#### Remove a User requesting DELETE
 
 ```
 DELETE http://localhost:8080/users/{uid}
