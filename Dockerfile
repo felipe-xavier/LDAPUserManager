@@ -7,7 +7,7 @@ RUN set -ex \
   && cd /opt/app \
   && mvn clean install
 
-FROM openjdk:8
+FROM openjdk:11
 LABEL MAINTAINER="Felipe Almeida"
 
 ENV JAR_FILE="interview-0.1.0.jar"
