@@ -4,10 +4,15 @@ This project implements a Spring Boot REST API for the OpenLDAP server.
 
 ## Quick Start
 
-With docker and docker-compose both installed on your machine, run the following command. It will build and run the API and the OpenLDAP Server containers as well as load the OrganizationalUnit Users on the server:
+First, make sure you have docker and docker-compose both installed on your machine and then run the following command. It will build and run the API and the OpenLDAP Server containers:
 ```
-$ bash start.sh
+$ docker-compose up -d
 ```
+Then, load the OrganizationalUnit Users on the OpenLDAP server:
+```
+$ load_ldif.sh
+```
+If you get an error with a message like "*Can't contact LDAP server (-1)*", please wait a couple of seconds, so the server can get accessible on the container and try again. 
 
 Once succeeded, you are good to go: <http://localhost:8080/users>
 
