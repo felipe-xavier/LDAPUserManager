@@ -17,6 +17,10 @@ import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+/** Repository Implementation Class for the User.
+ *
+ */
 @Repository
 public class UserLDAPRepositoryImpl implements UserLDAPRepository {
 
@@ -29,10 +33,20 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         this.ldapTemplate = ldapTemplate;
     }
 
+    /**
+     *
+     * @param uid Identifier for a specific user.
+     * @return A Name as a DistinguishedName for the user.
+     */
     public Name buildDn(String uid) {
         return LdapNameBuilder.newInstance().add("uid", uid).build();
     }
 
+    /** Creates the attributes for the User in a LDAP database.
+     *
+     * @param user UserLDAPModel object
+     * @return The Attributes for the User.
+     */
     private Attributes buildAttributes(UserLDAPModel user) {
 
         BasicAttribute objClassAttr = new BasicAttribute("objectclass");
@@ -47,6 +61,11 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         return attrs;
     }
 
+    /** Creates a User in the LDAP Database
+     *
+     * @param user UserLDAPModel object
+     * @return The User just created.
+     */
     @Override
     public UserLDAPModel create(UserLDAPModel user) {
         Name dn = buildDn(user.getUid());
@@ -55,6 +74,10 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         return user;
     }
 
+    /** Updates a User on the LDAP Database
+     * @param user UserLDAPModel object
+     * @return Return the User object after the update succeed
+     */
     @Override
     public UserLDAPModel update(UserLDAPModel user) {
         Name dn = buildDn(user.getUid());
@@ -63,6 +86,11 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         return user;
     }
 
+    /** Removes a User from the LDAP Database given uid.
+     *
+     * @param uid Identifier for a specific user.
+     * @return A string for success
+     */
     @Override
     public String remove(String uid) {
         Name dn = buildDn(uid);
@@ -70,6 +98,10 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         return uid + " removed successfully";
     }
 
+    /** Retrieve all the Users stored in the LDAP Database.
+     *
+     * @return All the Users stored in the LDAP Database.
+     */
     @Override
     public List<UserLDAPModel> findAll() {
         SearchControls searchControls = new SearchControls();
@@ -78,17 +110,33 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
                 new PersonAttributeMapper());
     }
 
+    /** Retrieve a specific User uid stored in the LDAP Database.
+     *
+     * @param uid Identifier for a specific user.
+     * @return A UserLDAPModel object with the attributes collected.
+     */
     @Override
     public UserLDAPModel findOne(String uid) {
         Name dn = buildDn(uid);
         return ldapTemplate.lookup(dn, new PersonAttributeMapper());
     }
 
+    /**
+     * A class with an overridden method to map the LDAP user attributes to a UserLDAPModel object.
+     */
     private static class PersonAttributeMapper implements AttributesMapper<UserLDAPModel> {
 
+        /**
+         *
+         * @param attributes Attributes given to be mapped.
+         * @return A LDAPUserModel object filled by attributes.
+         * @throws NamingException Catch and throws this exception.
+         */
         @Override
         public UserLDAPModel mapFromAttributes(Attributes attributes) throws NamingException {
+
             UserLDAPModel user = new UserLDAPModel();
+
             user.setUid(attributes.get("uid") != null ? attributes.get("uid").get().toString() : null);
             user.setCn(attributes.get("cn") != null ? attributes.get("cn").get().toString() : null);
             user.setSn(attributes.get("sn") != null ? attributes.get("sn").get().toString() : null);
