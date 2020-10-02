@@ -16,6 +16,8 @@ If you get an error with a message like "*Can't contact LDAP server (-1)*", plea
 
 Once succeeded, you are good to go: <http://localhost:8080/users>
 
+Also, you can check out the API Documentation on <http://localhost:8080/swagger-ui/> or just keep scrolling to get a quick reference to the endpoints here.
+
 ## API Endpoints
 
 #### Try to add a User through a POST request:
