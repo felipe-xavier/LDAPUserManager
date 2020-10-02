@@ -33,7 +33,7 @@ public class UserLDAPController {
     @PostMapping("/users")
     public ResponseEntity<UserLDAPModel> createUser(@RequestBody UserLDAPModel user) {
         UserLDAPModel result = userLDAPService.create(user);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping("/users")
