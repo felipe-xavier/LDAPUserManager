@@ -17,11 +17,11 @@ public class UserLDAPService {
         this.userLDAPRepositoryImpl = userLDAPRepositoryImpl;
     }
 
-    public List<UserLDAPModel> ldapUserFindAll() {
+    public List<UserLDAPModel> findAll() {
         return userLDAPRepositoryImpl.findAll();
     }
 
-    public UserLDAPModel ldapUserFindOne(String uid) {
+    public UserLDAPModel findOne(String uid) {
         return userLDAPRepositoryImpl.findOne(uid);
     }
 
@@ -29,7 +29,7 @@ public class UserLDAPService {
         return userLDAPRepositoryImpl.create(user);
     }
 
-    public UserLDAPModel update(UserLDAPModel user) {
+    public String update(UserLDAPModel user) {
         return userLDAPRepositoryImpl.update(user);
     }
 
