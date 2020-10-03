@@ -38,7 +38,7 @@ class UserLDAPControllerMockIntegrationTest {
         user.setSn("foo");
         user.setCn("User Foo");
 
-        when(userLDAPService.ldapUserFindOne(anyString())).thenReturn(user);
+        when(userLDAPService.findOne(anyString())).thenReturn(user);
 
         // Create a Mock GET HTTP request to verify the UserLDAPController Response.
         mvc.perform(MockMvcRequestBuilders.get("/users/any"))

@@ -26,13 +26,13 @@ public class UserLDAPController {
     @GetMapping("/users")
     @ApiOperation(value = "Return all the users on the LDAP Database.")
     public ResponseEntity<List<UserLDAPModel>> findAll() {
-        return new ResponseEntity<>(userLDAPService.ldapUserFindAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userLDAPService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/users/{uid}")
     @ApiOperation(value = "Return a single user uid on the LDAP Database.")
     public ResponseEntity<UserLDAPModel> findOne(@PathVariable(name = "uid") String uid) {
-        return new ResponseEntity<>(userLDAPService.ldapUserFindOne(uid), HttpStatus.OK);
+        return new ResponseEntity<>(userLDAPService.findOne(uid), HttpStatus.OK);
     }
 
     @PostMapping("/users")
@@ -42,10 +42,10 @@ public class UserLDAPController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @PutMapping("/users/{uid}")
+    @PutMapping("/users")
     @ApiOperation(value = "Update a User on the LDAP Database.")
-    public ResponseEntity<UserLDAPModel> UpdateUser(@RequestBody UserLDAPModel user) {
-        UserLDAPModel result = userLDAPService.update(user);
+    public ResponseEntity<String> UpdateUser(@RequestBody UserLDAPModel user) {
+        String result = userLDAPService.update(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
