@@ -61,7 +61,7 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         return attrs;
     }
 
-    /** Creates a User in the LDAP Database
+    /** Creates a User in the LDAP Database if it does not exists.
      *
      * @param user UserLDAPModel object
      * @return The User just created.
@@ -78,7 +78,7 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         }
     }
 
-    /** Updates a User on the LDAP Database
+    /** Updates a User on the LDAP Database if it exists.
      * @param user UserLDAPModel object
      * @return Return the User object after the update succeed
      */
