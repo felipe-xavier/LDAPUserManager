@@ -69,9 +69,13 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
     @Override
     public UserLDAPModel create(UserLDAPModel user) {
         Name dn = buildDn(user.getUid());
-        Attributes attrs = buildAttributes(user);
-        ldapTemplate.bind(dn, null, attrs);
-        return user;
+        try {
+            return ldapTemplate.lookup(dn, new PersonAttributeMapper());
+        } catch (org.springframework.ldap.NameNotFoundException e) {
+            Attributes attrs = buildAttributes(user);
+            ldapTemplate.bind(dn, null, attrs);
+            return user;
+        }
     }
 
     /** Updates a User on the LDAP Database
