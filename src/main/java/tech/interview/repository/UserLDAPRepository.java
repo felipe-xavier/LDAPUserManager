@@ -11,6 +11,6 @@ public interface UserLDAPRepository {
     List<UserLDAPModel> findAll();
     UserLDAPModel findOne(String uid);
     UserLDAPModel create(UserLDAPModel user);
-    UserLDAPModel update(UserLDAPModel user);
+    String update(UserLDAPModel user);
     String remove(String uid);
 }
