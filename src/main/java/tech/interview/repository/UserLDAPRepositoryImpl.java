@@ -135,11 +135,7 @@ public class UserLDAPRepositoryImpl implements UserLDAPRepository {
         try {
             return ldapTemplate.lookup(dn, new PersonAttributeMapper());
         } catch (org.springframework.ldap.NameNotFoundException e) {
-            UserLDAPModel user = new UserLDAPModel();
-            user.setSn("");
-            user.setCn("");
-            user.setUid("");
-            return user;
+            return null;
         }
     }
 

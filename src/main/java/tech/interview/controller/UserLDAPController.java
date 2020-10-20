@@ -32,7 +32,12 @@ public class UserLDAPController {
     @GetMapping("/users/{uid}")
     @ApiOperation(value = "Return a single user uid on the LDAP Database.")
     public ResponseEntity<UserLDAPModel> findOne(@PathVariable(name = "uid") String uid) {
-        return new ResponseEntity<>(userLDAPService.findOne(uid), HttpStatus.OK);
+        UserLDAPModel user = userLDAPService.findOne(uid);
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
     }
 
     @PostMapping("/users")
